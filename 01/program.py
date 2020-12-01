@@ -37,13 +37,6 @@ def part_two():
                 check = int(a) + int(b) + int(c)
 
                 if check == 2020:
-                    if a not in values:
-                        values.append(a)
-                    if b not in values:
-                        values.append(b)
-                    if c not in values:
-                        values.append(c)
-
-    # Calculate answer and return value
-    d = int(values[0]) * int(values[1]) * int(values[2])
-    return d
+                    # Calculate answer and return value
+                    d = int(a) * int(b) * int(c)
+                    return d
