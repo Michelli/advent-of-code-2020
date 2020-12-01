@@ -1,9 +1,10 @@
 import os
+import sys
 
 
 def read_input(filename):
     # Open input file as list
-    with open(os.path.abspath(filename)) as input:
+    with open(os.path.join(sys.path[0], filename)) as input:
         entries = input.read().splitlines()
     # Close input.txt
         input.close()
@@ -23,8 +24,7 @@ def part_one():
 
             if check == 2020:
                 # Calculate answer and return value
-                c = int(a) * int(b)
-                return c
+                return int(a) * int(b)
 
 
 def part_two():
@@ -38,5 +38,4 @@ def part_two():
 
                 if check == 2020:
                     # Calculate answer and return value
-                    d = int(a) * int(b) * int(c)
-                    return d
+                    return int(a) * int(b) * int(c)
