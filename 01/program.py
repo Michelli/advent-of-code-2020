@@ -20,9 +20,7 @@ def part_one(filename):
 
         # Second loop
         for b in entries:
-            check = int(a) + int(b)
-
-            if check == 2020:
+            if int(a) + int(b) == 2020:
                 # Calculate answer and return value
                 return int(a) * int(b)
 
@@ -34,8 +32,6 @@ def part_two(filename):
     for a in entries:
         for b in entries:
             for c in entries:
-                check = int(a) + int(b) + int(c)
-
-                if check == 2020:
+                if int(a) + int(b) + int(c) == 2020:
                     # Calculate answer and return value
                     return int(a) * int(b) * int(c)
