@@ -12,8 +12,8 @@ def read_input(filename):
     return entries
 
 
-def part_one():
-    entries = read_input("input.txt")
+def part_one(filename):
+    entries = read_input(filename)
 
     # First loop
     for a in entries:
@@ -27,8 +27,8 @@ def part_one():
                 return int(a) * int(b)
 
 
-def part_two():
-    entries = read_input("input.txt")
+def part_two(filename):
+    entries = read_input(filename)
 
     values = []
     for a in entries:
