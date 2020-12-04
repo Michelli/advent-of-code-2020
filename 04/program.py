@@ -33,6 +33,23 @@ def part_two(filename):
     passports = create_entries(filename)
     valid_passports = 0
 
+    rules = [
+        # Birth year: Between 1920-2002
+        r"(?<=byr:)19[2-9]\d|200[0-2]",
+        # Eye colour: List of colour codes
+        r"(?<=ecl:(amb|blu|brn|gry|grn|hzl|oth))",
+        # Expiration year: Between 2020-2030
+        r"(?<=eyr:)20(?:(?:2\d)|(?:30))",
+        # Hair colour: Colour hex code with leading hashtag
+        r"(?<=hcl:)#[0-9a-f]{6}",
+        # Height: Between 150-193cm OR 59-76in
+        r"(?<=hgt:)1(?:[5-8]\d|9[0-3])cm|(?:59|6\d|7[0-6])in",
+        # Issue year: Between 2010-2020
+        r"(?<=iyr:)20(?:(?:1\d)|(?:20))",
+        # Passport ID: Nine digits
+        r"(?<=pid:)\d{9}(?=\s|\n|$)",
+    ]
+
     for passport in passports:
         # Repeat checks of part one
         value_names = re.findall(r"[a-z]{3}(?=:)", passport)
@@ -42,33 +59,9 @@ def part_two(filename):
             # Passport rules passed
             check_counter = 0
 
-            # Birth year: Between 1920-2002
-            if len(re.findall(r"(?<=byr:)19[2-9]\d|200[0-2]", passport)) > 0:
-                check_counter += 1
-
-            # Eye colour: List of colour codes
-            if len(re.findall(r"(?<=ecl:(amb|blu|brn|gry|grn|hzl|oth))", passport)) > 0:
-                check_counter += 1
-
-            # Expiration year: Between 2020-2030
-            if len(re.findall(r"(?<=eyr:)20(?:(?:2\d)|(?:30))", passport)) > 0:
-                check_counter += 1
-
-            # Hair colour: Colour hex code with leading hashtag
-            if len(re.findall(r"(?<=hcl:)#[0-9a-f]{6}", passport)) > 0:
-                check_counter += 1
-
-            # Height: Between 150-193cm OR 59-76in
-            if len(re.findall(r"(?<=hgt:)1(?:[5-8]\d|9[0-3])cm|(?:59|6\d|7[0-6])in", passport)) > 0:
-                check_counter += 1
-
-            # Issue year: Between 2010-2020
-            if len(re.findall(r"(?<=iyr:)20(?:(?:1\d)|(?:20))", passport)) > 0:
-                check_counter += 1
-
-            # Passport ID: Nine digits
-            if len(re.findall(r"(?<=pid:)\d{9}(?=\s|\n|$)", passport)) > 0:
-                check_counter += 1
+            for rule in rules:
+                if len(re.findall(rule, passport)) > 0:
+                    check_counter += 1
 
             # All checks passed
             if check_counter == 7:
