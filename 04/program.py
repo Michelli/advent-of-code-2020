@@ -47,7 +47,7 @@ def part_two(filename):
         # Issue year: Between 2010-2020
         r"(?<=iyr:)20(?:(?:1\d)|(?:20))",
         # Passport ID: Nine digits
-        r"(?<=pid:)\d{9}(?=\s|\n|$)",
+        r"(?<=pid:)\d{9}(?=\s|$)",
     ]
 
     for passport in passports:
